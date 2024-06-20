@@ -1,0 +1,19 @@
+package hr.king.selectionProject.user.address;
+
+import hr.king.selectionProject.user.address.coordinates.Coordinates;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Address {
+    private String address;
+    private String city;
+    private String state;
+    private String stateCode;
+    private String postalCode;
+    private Coordinates coordinates;
+    private String country;
+}
