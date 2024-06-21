@@ -80,4 +80,13 @@ public class ProductController {
 
         return productService.getByPriceAndCategory(categorySlug, priceGt, priceLt);
     }
+
+    @GetMapping("/getByName")
+    public List<Product> getByName(@RequestParam(defaultValue = "") String name) {
+        if (name.isEmpty()) {
+            return productService.getAllProducts();
+        }
+
+        return productService.getByName(name);
+    }
 }

@@ -69,4 +69,8 @@ public class ProductService
     public List<Product> getByPriceAndCategory(String categorySlug, Double priceGt, Double priceLt) {
         return productRepository.findByPriceAndCategory(categorySlug, priceGt, priceLt);
     }
+
+    public List<Product> getByName(String name) {
+        return productRepository.findByNameContainingIgnoreCase(name);
+    }
 }
