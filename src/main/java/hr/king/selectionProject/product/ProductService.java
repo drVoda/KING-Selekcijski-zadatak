@@ -65,4 +65,8 @@ public class ProductService
             throw new ProductNotFoundException("Product not found with id " + id);
         }
     }
+
+    public List<Product> getByPriceAndCategory(String categorySlug, Double priceGt, Double priceLt) {
+        return productRepository.findByPriceAndCategory(categorySlug, priceGt, priceLt);
+    }
 }
