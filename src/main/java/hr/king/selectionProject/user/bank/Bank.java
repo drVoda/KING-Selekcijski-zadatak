@@ -1,5 +1,6 @@
 package hr.king.selectionProject.user.bank;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Embeddable
 public class Bank {
-
     private String cardExpire;
     private String cardNumber;
     private String cardType;

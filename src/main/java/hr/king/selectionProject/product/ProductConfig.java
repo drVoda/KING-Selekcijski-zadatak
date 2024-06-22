@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 public class ProductConfig {
 
     @Bean
-    CommandLineRunner commandLineRunner(ProductService productService) {
+    CommandLineRunner productCommandLineRunner(ProductService productService) {
         return args -> {
             RestTemplate restTemplate = new RestTemplate();
             String apiUrl = "https://dummyjson.com/products";
