@@ -18,32 +18,22 @@ Za pokretanje i testiranje aplikacije potrebno je:
 - **Dodavanje proizvoda**:
 POST /api/products/add
 
-markdown
-Copy code
 
 - **Dohvaćanje sažetka svih proizvoda**:
 GET /api/products/getAll
 
-markdown
-Copy code
 
 - **Dohvaćanje detalja o nekom proizvodu**:
 GET /api/products/{id}
 
-markdown
-Copy code
 
 - **Filtriranje proizvoda po kategoriji i cijeni**:
 GET /api/products/getByPriceAndCategory?category={category}&gt={gt}&lt={lt}
 
-markdown
-Copy code
 
 - **Filtriranje proizvoda po frazi sadržanoj u imenu**:
 GET /api/products/getByName?name={name}
 
-markdown
-Copy code
 
 ## Napomene
 
