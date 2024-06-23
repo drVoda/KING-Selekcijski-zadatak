@@ -23,11 +23,11 @@ public class ProductController {
     }
 
     @GetMapping("/getAll")
-    public List<ProductSummary> getProducts() {
+    public List<ProductDTO> getProducts() {
         List<Product> products = productService.getAllProducts();
 
         return products.stream()
-                .map(product -> new ProductSummary(
+                .map(product -> new ProductDTO(
                         product.getThumbnail(),
                         product.getTitle(),
                         product.getPrice(),

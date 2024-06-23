@@ -11,21 +11,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "companies")
+@Table
 public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private long companyId;
 
     private String department;
     private String name;
     private String title;
 
-    @Embedded
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
-    @OneToOne
-    @JoinColumn(name = "user_fk", referencedColumnName = "id")
+    @OneToOne(mappedBy = "company")
     private User user;
 }

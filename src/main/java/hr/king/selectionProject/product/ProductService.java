@@ -10,25 +10,24 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+
+// forma i fasada
 @Service
 public class ProductService
 {
-    private final ProductRepository productRepository;
-
-    private final DimensionsRepository dimensionsRepository;
-
-    private final MetaRepository metaRepository;
-
-    private final ReviewRepository reviewRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
     @Autowired
-    public ProductService(ProductRepository productRepository, DimensionsRepository dimensionsRepository, MetaRepository metaRepository, ReviewRepository reviewRepository){
-        this.productRepository = productRepository;
-        this.dimensionsRepository = dimensionsRepository;
-        this.metaRepository = metaRepository;
-        this.reviewRepository = reviewRepository;
-    }
+    private DimensionsRepository dimensionsRepository;
 
+    @Autowired
+    private MetaRepository metaRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
+
+    // zamijeni s productform
     public Product saveProduct(Product product) {
         if (product.getDimensions() != null) {
             dimensionsRepository.save(product.getDimensions());

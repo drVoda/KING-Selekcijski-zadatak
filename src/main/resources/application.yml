@@ -5,8 +5,8 @@ server:
 
 spring:
   datasource:
-    password: WeDbTD243n
-    url: jdbc:postgresql://localhost:5433/selekcijskiZad
+    password: changeforproduction
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
   jpa:
     hibernate:

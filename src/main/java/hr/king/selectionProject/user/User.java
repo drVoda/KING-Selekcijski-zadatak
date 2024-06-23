@@ -2,6 +2,7 @@ package hr.king.selectionProject.user;
 
 
 import hr.king.selectionProject.user.address.Address;
+import hr.king.selectionProject.user.address.coordinates.Coordinates;
 import hr.king.selectionProject.user.bank.Bank;
 import hr.king.selectionProject.user.company.Company;
 import hr.king.selectionProject.user.crypto.Crypto;
@@ -10,13 +11,19 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
-public class User {
+@Table(schema = "public")
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -42,7 +49,8 @@ public class User {
 
     private String ip;
 
-    @Embedded
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     private String macAddress;
@@ -51,7 +59,8 @@ public class User {
     @Embedded
     private Bank bank;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_id", referencedColumnName = "companyId")
     private Company company;
 
     private String ein;
@@ -62,4 +71,31 @@ public class User {
     private Crypto crypto;
 
     private String role;
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role));
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
+
